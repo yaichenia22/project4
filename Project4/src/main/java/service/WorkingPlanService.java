@@ -6,6 +6,7 @@ import java.util.List;
 import dao.impl.DaoDBFactory;
 import dao.interfaces.IWorkingPlanDao;
 import entity.KindOfWork;
+import entity.Request;
 import entity.WorkingPlan;
 
 public class WorkingPlanService {
@@ -53,5 +54,9 @@ public class WorkingPlanService {
 	
 	public void remove(WorkingPlan workingPlan) {
 		workingPlanDao.remove(workingPlan);
+	}
+	
+	public WorkingPlan getByRequest(Request request) {
+		return workingPlanDao.getPlanByRequest(request);
 	}
 }

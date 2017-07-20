@@ -61,6 +61,9 @@
 						</ul>
 					</li>
 				</ul>
+				<c:if test="${deletingAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to deleting denied</p></div>
+				</c:if>
 			</c:when>
 			<c:when test="${(param.scope eq 'done') or (param.scope eq 'inProcess')}">
 				<ul class="nav nav-tabs">
@@ -83,7 +86,10 @@
 							<li><a href="Controller?command=workplanManager&scope=Joinery">Joinery</a></li>
 						</ul>
 					</li>
-				</ul>	
+				</ul>
+				<c:if test="${deletingAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to deleting denied</p></div>
+				</c:if>	
 			</c:when>
 			<c:when test="${(param.scope eq 'Electric') or (param.scope eq 'Pump') or (param.scope eq 'Gas') or (param.scope eq 'Joinery')}">
 				<ul class="nav nav-tabs">
@@ -107,6 +113,9 @@
 						</ul>
 					</li>
 				</ul>
+				<c:if test="${deletingAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to deleting denied</p></div>
+				</c:if>
 			</c:when>
 		</c:choose>
 		<table class="table table-striped">

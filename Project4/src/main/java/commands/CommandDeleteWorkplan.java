@@ -3,6 +3,7 @@ package commands;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,13 @@ public class CommandDeleteWorkplan implements ICommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		ServletContext servletContext = request.getSession().getServletContext();
+		if(!(boolean)servletContext.getAttribute("isPlanFreeForDelete" + request.getParameter("workplanIdForRemoving"))){
+			request.setAttribute("deletingAccessDenied", true);
+			request.setAttribute("scope", request.getParameter("scope"));
+			return "/Controller?command=workplanManager";
+		}
+		servletContext.setAttribute("isPlanFreeForDelete" + request.getParameter("workplanIdForRemoving"), false);
 		RequestService requestService = RequestService.getInstance();
 		WorkingPlanService workingPlanService = WorkingPlanService.getInstance();
 		WorkTeamService workTeamService = WorkTeamService.getInstance();
