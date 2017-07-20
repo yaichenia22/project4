@@ -1,0 +1,57 @@
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>2.0</jsp-version>
+   <short-name>Custom tags</short-name>
+   
+   <tag>
+      <name>statusRequest</name>
+      <tag-class>tags.TagStatusRequest</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+         <name>request</name>
+         <required>true</required>
+         <type>entity.Request</type>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>   
+   </tag>
+   
+   <tag>
+      <name>TagStatusRequestById</name>
+      <tag-class>tags.TagStatusRequestById</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+         <name>requestId</name>
+         <required>true</required>
+         <type>java.lang.Long</type>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>   
+   </tag>
+   
+   <tag>
+      <name>fullNameEmployee</name>
+      <tag-class>tags.TagFullNameEmployee</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+         <name>employeeId</name>
+         <required>true</required>
+         <type>java.lang.Long</type>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>   
+   </tag>
+   
+   <tag>
+      <name>fullNameLead</name>
+      <tag-class>tags.TagFullNameLead</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+         <name>leadId</name>
+         <required>true</required>
+         <type>java.lang.Long</type>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>   
+   </tag>
+</taglib>
