@@ -49,6 +49,12 @@
 				<c:if test="${not empty deletedRequestId}">
 					<div class="alert alert-warning"><p class="text-center">Request №<c:out value="${deletedRequestId}"></c:out> was successfully deleted</p></div>
 				</c:if>
+				<c:if test="${processAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to process denied</p></div>
+				</c:if>
+				<c:if test="${deletingAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to deleting denied</p></div>
+				</c:if>
 			</c:when>
 			<c:when test="${param.scope eq 'done'}">
 				<ul class="nav nav-tabs">
@@ -81,6 +87,12 @@
 				</ul>
 				<c:if test="${not empty deletedRequestId}">
 					<div class="alert alert-warning"><p class="text-center">Request №<c:out value="${deletedRequestId}"></c:out> was successfully deleted</p></div>
+				</c:if>
+				<c:if test="${processAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to process denied</p></div>
+				</c:if>
+				<c:if test="${deletingAccessDenied eq true}">
+					<div class="alert alert-danger"><p class="text-center">Access to deleting denied</p></div>
 				</c:if>
 			</c:when>
 		</c:choose>

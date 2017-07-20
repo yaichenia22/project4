@@ -2,6 +2,7 @@ package tags;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -29,7 +30,11 @@ public class TagStatusRequest extends SimpleTagSupport {
 		
 		PageContext pageContext = (PageContext)getJspContext();
 		HttpServletRequest httpRequest = (HttpServletRequest) pageContext.getRequest();
+		ServletContext servletContext = httpRequest.getSession().getServletContext();
 		httpRequest.setAttribute("requestStatusName", status.getName());
+		servletContext.setAttribute("isRequestFreeForProcess" + request.getId(), true);
+		servletContext.setAttribute("isRequestFreeForDelete" + request.getId(), true);
+		
 		try {
 		out.println(status.getName());
 		} catch (IOException e) {

@@ -18,7 +18,7 @@ public class RequestService {
 	private static IRequestDao requestDao = null;
 	private static IKindOfWorkDao kindDao = null;
 
-	private RequestService() {
+	protected RequestService() {
 		requestDao = DaoDBFactory.getInstance().getRequestDao();
 		kindDao = DaoDBFactory.getInstance().getKindOfWorkDao();
 	}

@@ -2,6 +2,7 @@ package commands;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,14 @@ public class CommandGoToCreatePlan implements ICommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		ServletContext servletContext = request.getSession().getServletContext();
+		if(!(boolean)servletContext.getAttribute("isRequestFreeForProcess" + request.getParameter("requestIdForProcess"))){
+			request.setAttribute("processAccessDenied", true);
+			request.setAttribute("scope", request.getParameter("scope"));
+			return "/Controller?command=requestManager";
+		}
+		servletContext.setAttribute("isRequestFreeForProcess" + request.getParameter("requestIdForProcess"), false);
 		Request requestForProcess = RequestService.getInstance().getById(new Long(request.getParameter("requestIdForProcess")));
 		KindOfWork requestKind = KindsOfWorkService.getInstance().getById(requestForProcess.getKindOfWorkId());
 		Specialization requestSpecialization = SpecializationService.getInstance().getByName(requestKind.getName());

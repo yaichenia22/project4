@@ -15,11 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import entity.Dispatcher;
+import entity.Request;
 import entity.TeamMember;
 import manager.Config;
 import service.TeamMemberService;
 import service.WorkTeamService;
 import service.WorkingPlanService;
+import service.request.RequestService;
+import service.request.Status;
 
 public class CommandCreatePlan implements ICommand {
 
@@ -29,6 +32,13 @@ public class CommandCreatePlan implements ICommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		Long requestId = new Long (request.getParameter("requestIdForProcess"));
+		Request requestForProcess = RequestService.getInstance().getById(requestId);
+		if(!RequestService.getInstance().getStatus(requestForProcess).equals(Status.UNCONSIDERED)) {
+			request.setAttribute("processAccessDenied", true);
+			request.setAttribute("scope", (String)request.getAttribute("scope"));
+			return "/Controller?command=requestManager";
+		}
 		Dispatcher dispatcher = (Dispatcher)request.getSession().getAttribute("user");
 		
 		Long workTeamId = WorkTeamService.getInstance().getCorrectId();
@@ -46,7 +56,7 @@ public class CommandCreatePlan implements ICommand {
 			}
 		}
 		
-		Long requestId = new Long (request.getParameter("requestIdForProcess"));
+		requestId = new Long (request.getParameter("requestIdForProcess"));
 		
 		DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
 		Date date = null;
