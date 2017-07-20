@@ -22,7 +22,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="Controller?command=tenantHome">Housing
+				<a class="navbar-brand" href="Controller?command=dispatcherMain">Housing
 					and communal services</a>
 			</div>
 			<div class="navbar-collapse collapse">
