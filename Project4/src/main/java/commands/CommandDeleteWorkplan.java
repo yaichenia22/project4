@@ -41,12 +41,12 @@ public class CommandDeleteWorkplan implements ICommand {
 		WorkTeam workTeam = workTeamService.getById(workingPlan.getWorkTeamId());
 		List<TeamMember> teamMembers = teamMemberService.getAllByWorkTeam(workTeam);
 		
-		RequestService.getInstance().remove(requestForRemoving);
 		for(TeamMember member: teamMembers) {
 			teamMemberService.remove(member);
 		}
-		workTeamService.remove(workTeam);
 		workingPlanService.remove(workingPlan);
+		workTeamService.remove(workTeam);
+		RequestService.getInstance().remove(requestForRemoving);
 		
 		request.setAttribute("scope", request.getParameter("scope"));
 		return "/Controller?command=workplanManager";

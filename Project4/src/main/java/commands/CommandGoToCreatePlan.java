@@ -24,7 +24,8 @@ public class CommandGoToCreatePlan implements ICommand {
 			throws ServletException, IOException {
 		
 		ServletContext servletContext = request.getSession().getServletContext();
-		if(!(boolean)servletContext.getAttribute("isRequestFreeForProcess" + request.getParameter("requestIdForProcess"))){
+		Object isRequestFreeForProcess = servletContext.getAttribute("isRequestFreeForProcess" + request.getParameter("requestIdForProcess"));
+		if((isRequestFreeForProcess != null) && !(boolean)isRequestFreeForProcess){
 			request.setAttribute("processAccessDenied", true);
 			request.setAttribute("scope", request.getParameter("scope"));
 			return "/Controller?command=requestManager";
