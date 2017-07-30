@@ -40,7 +40,7 @@ public class CommandDeleteWorkplan implements ICommand {
 		Request requestForRemoving = requestService.getById(workingPlan.getRequestId());
 		WorkTeam workTeam = workTeamService.getById(workingPlan.getWorkTeamId());
 		List<TeamMember> teamMembers = teamMemberService.getAllByWorkTeam(workTeam);
-		
+			
 		for(TeamMember member: teamMembers) {
 			teamMemberService.remove(member);
 		}
