@@ -7,6 +7,3 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-Project4/.classpath/
-Project4/.project
-Project4/.settings
