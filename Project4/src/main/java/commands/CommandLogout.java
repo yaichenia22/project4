@@ -16,8 +16,10 @@ public class CommandLogout implements ICommand {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
-		if(session != null)
+		if(session != null) {
 			session.invalidate();
+			session = null;
+		}
 		return Config.getInstance().getProperty(Config.LOGIN);
 	}
 

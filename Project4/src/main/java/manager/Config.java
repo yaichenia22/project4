@@ -1,12 +1,13 @@
 package manager;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Config {
 
     private static Config instance;
     private ResourceBundle resource;
-    private static final String BUNDLE_NAME = "manager.config";
+    private static final String BUNDLE_NAME = "config";
     public static final String DRIVER = "DRIVER";
     public static final String URL = "URL";
     public static final String TENANT_MAIN = "TENANT_MAIN";
@@ -27,7 +28,7 @@ public class Config {
     public static Config getInstance() {
         if (instance == null) {
             instance = new Config();
-            instance.resource = ResourceBundle.getBundle(BUNDLE_NAME);
+            instance.resource = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault());
         }
         return instance;
     }

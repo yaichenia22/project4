@@ -4,24 +4,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import commands.CommandMissing;
-import commands.CommandRequestForDispatcher;
-import commands.CommandRequestManager;
-import commands.CommandRequestTenant;
-import commands.CommandTenantHome;
-import commands.CommandWorkplansManager;
-import commands.CommandAccountDispatcher;
-import commands.CommandAccountTenant;
-import commands.CommandCreatePlan;
-import commands.CommandLogin;
-import commands.CommandLogout;
-import commands.CommandCreateRequest;
-import commands.CommandDeleteRequest;
-import commands.CommandDeleteWorkplan;
-import commands.CommandDispatcherMain;
-import commands.CommandGoToCreatePlan;
-import commands.CommandGoToCreateRequest;
-import commands.ICommand;
+import commands.*;
 
 public class ControllerHelper {
     

@@ -125,8 +125,8 @@
 				<th>Work team №</th>
 				<th>Request №</th>
 				<th>Kind of work</th>
-				<th>Estimated start date</th>
 				<th>Estimated execute date</th>
+				<th>Estimated start date</th>
 				<th></th>
 			</tr>
 			<c:forEach items="${workingPlans}" var="workplan">

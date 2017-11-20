@@ -33,8 +33,8 @@ public class Controller extends HttpServlet {
             request.setAttribute("messageError", Message.getInstance().getProperty(Message.IO_EXCEPTION));
         }
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-        dispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(page);
+        requestDispatcher.forward(request, response);
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

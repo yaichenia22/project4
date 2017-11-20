@@ -22,19 +22,31 @@ public class AuthFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
-
-		HttpSession session = req.getSession(false);
-		
-        String loginURI = req.getContextPath() + Config.getInstance().getProperty(Config.LOGIN);    
+		HttpSession session = req.getSession(true);		
+        String loginURI = req.getContextPath() + Config.getInstance().getProperty(Config.LOGIN);
         
-        boolean loggedIn = session != null;
-        boolean loginRequest = req.getRequestURI().equals(loginURI);
-
-        if (loggedIn || loginRequest) {
-        	filterChaine.doFilter(request, response);
+        if (session.getAttribute("user") == null) {
+        	if (isCommandLogin(req)) {
+        		filterChaine.doFilter(request, response);
+        	} else {
+        		if (req.getRequestURI().equals(loginURI)) {
+        			filterChaine.doFilter(request, response);
+        		} else {
+        			resp.sendRedirect(loginURI);
+        		}
+        	}
         } else {
-            resp.sendRedirect(loginURI);
+        	filterChaine.doFilter(request, response);
         }
+	}
+	
+	private boolean isCommandLogin(HttpServletRequest request) {
+		String parameter = request.getParameter("command");
+		if (parameter == null || !parameter.equals("login")) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override

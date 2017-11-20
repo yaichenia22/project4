@@ -1,12 +1,13 @@
 package manager;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Message {
 
     private static Message instance;
     private ResourceBundle resource;
-    private static final String BUNDLE_NAME = "manager.messages";
+    private static final String BUNDLE_NAME = "messages";
     public static final String SERVLET_EXECPTION = "SERVLET_EXCEPTION";
     public static final String IO_EXCEPTION = "IO_EXCEPTION";
     public static final String LOGIN_ERROR = "LOGIN_ERROR";
@@ -14,7 +15,7 @@ public class Message {
     public static Message getInstance() {
         if (instance == null) {
             instance = new Message();
-            instance.resource = ResourceBundle.getBundle(BUNDLE_NAME);
+            instance.resource = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault());
         }
         return instance;
     }
